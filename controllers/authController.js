@@ -84,7 +84,7 @@ if(!userinfo)
               if (err) {
                   res.send(err);
               } else {
-                res.status(StatusCodes.OK).json({ msg: 'OTP send successfully on your mail please verify!' });
+                res.status(StatusCodes.OK).json({ msg: 'OTP send successfully on your mail please verify!',email:req.body.email});
               }
           });
       }
@@ -97,7 +97,7 @@ const otpverify = async (req,res) => {
     throw new CustomError.BadRequestError('Invalid OTP');
   }
   else {
-    res.status(StatusCodes.OK).json({ msg: 'You are successfully verified' });
+    res.status(StatusCodes.OK).json({ msg: 'You are successfully verified',email : req.body.email });
   }
 }
 
@@ -110,8 +110,6 @@ const setpassword =async (res,req)=>{
   else {
     res.status(StatusCodes.OK).json({ msg: 'Your password successfully changed' });
   }
-
-
 
 }
 
