@@ -80,7 +80,7 @@ const forgetpassword = async (req,res) => {
               if (err) {
                   res.send(err);
               } else {
-                res.status(StatusCodes.OK).json({ msg: 'Mail successfully send!' });
+                res.status(StatusCodes.OK).json({ msg: 'OTP send successfully on your mail please verify!' });
               }
           });
       }
