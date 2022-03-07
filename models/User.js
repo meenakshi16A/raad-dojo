@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const { number } = require('joi');
 
 const UserSchema = new mongoose.Schema({
   name: {
-    type: String,
+    first_name:String,
+    middle_name:String,
+    last_name:String,
+    user_name:String,
     required: [true, 'Please provide name'],
     minlength: 3,
     maxlength: 50,
@@ -23,11 +27,31 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please provide password'],
     minlength: 6,
   },
-  role: {
+  address:{
     type: String,
-    enum: ['admin', 'user','trainer'],
-    default: 'user',
+    required: [true, 'Please provide address']
   },
+  country:{
+    type: String,
+    required: [true, 'Please provide address']
+  },
+  city:{
+    type: String,
+    required: [true, 'Please provide address']
+  },
+  country_code:{
+    type: number,
+    required: [true, 'Please provide Country code']
+  },
+  c:{
+    type: number,
+    required: [true, 'Please provide Phone number']
+  },
+  // role: {
+  //   type: String,
+  //   enum: ['admin', 'user','trainer'],
+  //   default: 'user',
+  // },
 });
 
 UserSchema.pre('save', async function () {
