@@ -6,7 +6,6 @@ const { number } = require('joi');
 const UserSchema = new mongoose.Schema({
   first_name: {
     type:String,
- 
     required: [true, 'Please provide first name'],
     minlength: 3,
     maxlength: 50,
@@ -63,11 +62,7 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please provide Phone number']
   },
-  // role: {
-  //   type: String,
-  //   enum: ['admin', 'user','trainer'],
-  //   default: 'user',
-  // },
+ 
 });
 
 UserSchema.pre('save', async function () {
