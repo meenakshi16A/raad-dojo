@@ -102,7 +102,7 @@ const otpverify = async (req,res) => {
 }
 
 const setpassword =async (res,req)=>{
-  console.log(req)
+  console.log(req.body.email)
   const uinfo = await User.findOneAndUpdate({email:req.body.email},{password:req.body.password})
   if(!uinfo)
   {
