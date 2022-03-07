@@ -71,7 +71,7 @@ const forgetpassword = async (req,res) => {
       } else {
           var mainOptions = {
               from: '"Tester" harsh123@yopmail.com',
-              to: "harshpal1h8@gmail.com",
+              to: uinfo.email,
               subject: 'Hello, world',
               html: data
           };
