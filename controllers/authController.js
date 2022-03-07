@@ -80,7 +80,7 @@ const forgetpassword = async (req,res) => {
               if (err) {
                   res.send(err);
               } else {
-                res.send('Message sent: ' + info.response);
+                res.status(StatusCodes.OK).json({ msg: 'Mail successfully send!' });
               }
           });
       }
