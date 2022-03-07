@@ -4,14 +4,30 @@ const bcrypt = require('bcryptjs');
 const { number } = require('joi');
 
 const UserSchema = new mongoose.Schema({
-  name: {
-    first_name:String,
-    middle_name:String,
-    last_name:String,
-    user_name:String,
-    // required: [true, 'Please provide name'],
-    // minlength: 3,
-    // maxlength: 50,
+  first_name: {
+    type:String,
+ 
+    required: [true, 'Please provide first name'],
+    minlength: 3,
+    maxlength: 50,
+  },
+  middle_name: {
+    type:String,
+    required: [true, 'Please provide middle name'],
+    minlength: 3,
+    maxlength: 50,
+  },
+  last_name: {
+    type:String,
+    required: [true, 'Please provide last name'],
+    minlength: 3,
+    maxlength: 50,
+  },
+  user_name: {
+    type:String,
+    required: [true, 'Please provide user name'],
+    minlength: 3,
+    maxlength: 50,
   },
   email: {
     type: String,
