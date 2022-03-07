@@ -51,6 +51,10 @@ const logout = async (req, res) => {
 const forgetpassword = async (req,res) => {
  
   const userinfo = await User.findOne({ email: req.body.email });
+if(!userinfo)
+{
+  throw new CustomError.BadRequestError('Please provide valid email');
+}
 
   let testAccount = await nodemailer.createTestAccount();
   const transporter = nodemailer.createTransport({
@@ -86,7 +90,30 @@ const forgetpassword = async (req,res) => {
       }
       });
 }
+const otpverify = async (req,res) => {
+  const userinfo = await User.findOne({email:req.body.email,otp:req.body.otp});
+  if(!userinfo)
+  {
+    throw new CustomError.BadRequestError('Invalid OTP');
+  }
+  else {
+    res.status(StatusCodes.OK).json({ msg: 'You are successfully verified' });
+  }
+}
 
+const setpassword =async (res,req)=>{
+  const uinfo = await User.findOneAndUpdate({email:req.body.email},{password:req.body.password})
+  if(!uinfo)
+  {
+    throw new CustomError.BadRequestError('Failed');
+  }
+  else {
+    res.status(StatusCodes.OK).json({ msg: 'Your password successfully changed' });
+  }
+
+
+
+}
 
 
 module.exports = {
@@ -94,4 +121,6 @@ module.exports = {
   login,
   logout,
   forgetpassword,
+  otpverify,
+  setpassword
 };
