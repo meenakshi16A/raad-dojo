@@ -56,11 +56,11 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please provide address']
   },
   country_code:{
-    type: number,
+    type: Number,
     required: [true, 'Please provide Country code']
   },
   phone_number:{
-    type: number,
+    type: Number,
     required: [true, 'Please provide Phone number']
   },
   // role: {
