@@ -13,7 +13,7 @@ const helmet = require('helmet');
 const xss = require('xss-clean');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
-
+var path = require('path');
 // database
 const connectDB = require('./db/connect');
 

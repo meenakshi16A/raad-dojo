@@ -19,7 +19,7 @@ const authenticateUser = async (req, res, next) => {
 
 const authorizePermissions = (...roles) => {
   return (req, res, next) => {
-
+  
     next();
   };
 };

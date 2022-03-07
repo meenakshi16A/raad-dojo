@@ -1,0 +1,70 @@
+<html>
+    <head>
+        Forget Email
+        <style>
+            body {
+                background-color: aqua;
+                font-size: 30px;
+            }
+            .body {
+                width: 70%;
+                margin: auto;
+                border: 1px solid #000;
+            }
+            .container-header{
+                width: 100%;
+                background-color: aqua;
+                color: aliceblue;
+            }
+            .heading {
+                text-align: center;
+                margin: 0px !important;
+            }
+            .container-footer{
+                width: 100%;
+                background-color: aqua;
+                color: aliceblue;
+                text-align: center;
+            }
+            .copyRight {
+                text-align: center;
+                margin-bottom: 0px !important;
+            }
+            .website-btn {
+                width: 200px;
+                padding: 10px;
+                background-color: blueviolet;
+                border: 2px solid #000;
+                color: #fff !important;
+                text-decoration: none;
+            }
+            .btn-para{
+                width: 100%;
+                margin: auto;
+                text-align: center;
+            }
+            .container-body {
+                padding: 10px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="body">
+                <div class="container-header">
+                    <h4 class="heading">GYM Spot</h4>
+                </div>
+                <div class="container-body">
+                    <p>Hello <%= name %></p>
+                    <p>Continue signing up for GitHub by entering the code below:</p>
+                    <h3><%= otp %></h3>
+                    <p class="btn-para"><a href="https://www.geeksforgeeks.org/use-ejs-as-template-engine-in-node-js/" class="website-btn">Go to Website</a></p>
+                </div>
+                <div class="container-footer">
+                    <p class="copyRight">coptright@2022</p>
+                </div>
+            </div>
+          
+        </div>
+    </body>
+</html>

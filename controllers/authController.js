@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
+const nodemailer = require('nodemailer');
+const ejs = require('ejs');
 const { attachCookiesToResponse, createTokenUser } = require('../utils');
 
 const register = async (req, res) => {
@@ -46,8 +48,50 @@ const logout = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'user logged out!' });
 };
 
+const forgetpassword = async (req,res) => {
+ 
+  const userinfo = await User.findOne({ email: req.body.email });
+
+  let testAccount = await nodemailer.createTestAccount();
+  const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      port: 587,
+      auth: {
+          user: 'harsh.sws2020@gmail.com',
+          pass: 'alfypvcofofrwdap'
+      }
+  });
+  var otp = Math.floor(100000 + Math.random() * 900000);
+  const mailid = req.body.email;
+  const uinfo = await User.findOneAndUpdate({email:mailid},{otp:otp})
+
+       ejs.renderFile("./view/forget_email.ejs", { name: uinfo.user_name,'otp':otp }, function (err, data) {
+      if (err) {
+          console.log(err);
+      } else {
+          var mainOptions = {
+              from: '"Tester" harsh123@yopmail.com',
+              to: "harshpal1h8@gmail.com",
+              subject: 'Hello, world',
+              html: data
+          };
+         // console.log("html data ======================>", mainOptions.html);
+          transporter.sendMail(mainOptions, function (err, info) {
+              if (err) {
+                  res.send(err);
+              } else {
+                res.send('Message sent: ' + info.response);
+              }
+          });
+      }
+      });
+}
+
+
+
 module.exports = {
   register,
   login,
   logout,
+  forgetpassword,
 };

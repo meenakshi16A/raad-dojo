@@ -9,7 +9,7 @@ const {
 
 const getAllUsers = async (req, res) => {
   console.log(req.user);
-  const users = await User.find({});
+  const users = await User.find({ }).select('-password');
   res.status(StatusCodes.OK).json({ users });
 };
 
@@ -18,7 +18,7 @@ const getSingleUser = async (req, res) => {
   if (!user) {
     throw new CustomError.NotFoundError(`No user with id : ${req.params.id}`);
   }
-  checkPermissions(req.user, user._id);
+  //checkPermissions(req.user, user._id);
   res.status(StatusCodes.OK).json({ user });
 };
 

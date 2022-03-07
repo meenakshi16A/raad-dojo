@@ -62,7 +62,10 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please provide Phone number']
   },
- 
+  otp: {
+    type: Number,
+    default: null,
+  },
 });
 
 UserSchema.pre('save', async function () {
