@@ -59,7 +59,7 @@ const UserSchema = new mongoose.Schema({
     type: number,
     required: [true, 'Please provide Country code']
   },
-  c:{
+  phone_number:{
     type: number,
     required: [true, 'Please provide Phone number']
   },
