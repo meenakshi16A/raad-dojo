@@ -54,11 +54,11 @@ const forgetpassword = async (req,res) => {
 
   let testAccount = await nodemailer.createTestAccount();
   const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: 'ibrinfotech',
       port: 587,
       auth: {
-          user: 'harsh.sws2020@gmail.com',
-          pass: 'alfypvcofofrwdap'
+          user: 'ibr.test@ibrinfotech.com',
+          pass: 'Kmyk$197'
       }
   });
   var otp = Math.floor(100000 + Math.random() * 900000);
