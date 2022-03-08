@@ -26,7 +26,7 @@ const login = async (req, res) => {
   if (!email || !password) {
     throw new CustomError.BadRequestError('Please provide email and password');
   }
-  const user = await User.findOne({ email });
+  const users = await User.findOne({ email });
 
   if (!user) {
     throw new CustomError.UnauthenticatedError('Invalid Credentials');
@@ -38,7 +38,7 @@ const login = async (req, res) => {
   const tokenUser = createTokenUser(user);
   const cooki=attachCookiesToResponse({ res, user: tokenUser });
 
-  res.status(StatusCodes.OK).json({user:tokenUser,token:cooki});
+  res.status(StatusCodes.OK).json({user:users,token:cooki});
 };
 const logout = async (req, res) => {
   res.cookie('token', 'logout', {
