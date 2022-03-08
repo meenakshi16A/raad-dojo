@@ -59,7 +59,7 @@ app.use(fileUpload());
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 
-app.use('/',swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+app.use('/api-doc',swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
