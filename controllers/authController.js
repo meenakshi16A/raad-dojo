@@ -97,7 +97,7 @@ const otpverify = async (req,res) => {
     throw new CustomError.BadRequestError('Invalid OTP');
   }
   else {
-    res.status(StatusCodes.OK).json({ msg: 'You are successfully verified',email : req.body.email });
+    res.status(StatusCodes.OK).json({ msg: 'You are successfully verified' });
   }
 }
 
@@ -109,7 +109,7 @@ const setpassword =async (req,res)=>{
     throw new CustomError.BadRequestError('Failed');
   }
   else {
-    res.status(StatusCodes.OK).json({ msg: 'Your password successfully changed' });
+    res.status(StatusCodes.OK).json({ msg: 'Your password successfully changed' ,email : req.body.email});
   }
 
 }
