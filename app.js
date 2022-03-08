@@ -19,6 +19,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // database
 const connectDB = require('./db/connect');
 
+// Swagger UI Info
+
+const swaggerUI = require('swagger-ui-express')
+const YAML = require('yamljs')
+const swaggerDocument = YAML.load('./swagger.yaml')
 //  routers
 const authRouter = require('./routes/authRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -54,6 +59,7 @@ app.use(fileUpload());
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 
+app.use('/api-use',swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

@@ -1,0 +1,293 @@
+openapi: 3.0.0
+info:
+  title: Raad-dojo
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://raad-dojo.herokuapp.com/api/v1/auth
+  variables: {}
+- url: http://localhost:5000/api/v1
+  variables: {}
+paths:
+  /register:
+    post:
+      tags:
+      - auth
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerrequest'
+            example:
+              first_name: meenakshi
+              middle_name: meenakshi
+              last_name: meenakshi
+              user_name: meenakshi1
+              email: meenakshi@gmail.com
+              password: secret
+              address: 2 floor ibr infotech
+              country_code: '+91'
+              country: india
+              city: indore
+              phone_number: '7415918747'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://raad-dojo.herokuapp.com/api/v1/auth
+        variables: {}
+  /auth/forget-password:
+    post:
+      tags:
+      - auth
+      summary: '{{url}}auth/forget-password'
+      operationId: '{{url}}auth/forget-password'
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/urlauthforget-password-request'
+            example:
+              email: meenakshi123@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://localhost:5000/api/v1
+        variables: {}
+  /auth/otpverify:
+    post:
+      tags:
+      - auth
+      summary: '{{url}}auth/otpverify'
+      operationId: '{{url}}auth/otpverify'
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/urlauthotpverifyrequest'
+            example:
+              email: meenakshiibr@gmail.com
+              otp: '365635'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://localhost:5000/api/v1
+        variables: {}
+  /auth/set-password:
+    post:
+      tags:
+      - auth
+      summary: '{{url}}auth/set-password'
+      operationId: '{{url}}auth/set-password'
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/urlauthset-password-request'
+            example:
+              email: meenakshiibr@gmail.com
+              password: secret1
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://localhost:5000/api/v1
+        variables: {}
+  /login:
+    post:
+      tags:
+      - auth
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginrequest'
+            example:
+              email: meenakshi123@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://raad-dojo.herokuapp.com/api/v1/auth
+        variables: {}
+  /logout:
+    get:
+      tags:
+      - auth
+      summary: logout
+      operationId: logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://raad-dojo.herokuapp.com/api/v1/auth
+        variables: {}
+  /users/getAllUsers:
+    get:
+      tags:
+      - Misc
+      summary: '{{url}}users/getAllUsers'
+      operationId: '{{url}}users/getAllUsers'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://localhost:5000/api/v1
+        variables: {}
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+      - first_name
+      - middle_name
+      - last_name
+      - user_name
+      - email
+      - password
+      - address
+      - country_code
+      - country
+      - city
+      - phone_number
+      type: object
+      properties:
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        last_name:
+          type: string
+        user_name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        address:
+          type: string
+        country_code:
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        phone_number:
+          type: string
+      example:
+        first_name: meenakshi
+        middle_name: meenakshi
+        last_name: meenakshi
+        user_name: meenakshi1
+        email: meenakshi@gmail.com
+        password: secret
+        address: 2 floor ibr infotech
+        country_code: '+91'
+        country: india
+        city: indore
+        phone_number: '7415918747'
+    urlauthforget-password-request:
+      title: urlauthforget-password-request
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+      example:
+        email: meenakshi123@gmail.com
+    urlauthotpverifyrequest:
+      title: urlauthotpverifyrequest
+      required:
+      - email
+      - otp
+      type: object
+      properties:
+        email:
+          type: string
+        otp:
+          type: string
+      example:
+        email: meenakshiibr@gmail.com
+        otp: '365635'
+    urlauthset-password-request:
+      title: urlauthset-password-request
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: meenakshiibr@gmail.com
+        password: secret1
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: meenakshi123@gmail.com
+        password: secret
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security:
+- bearer: []
+tags:
+- name: auth
+- name: Misc
+  description: ''
