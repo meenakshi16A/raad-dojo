@@ -35,7 +35,7 @@ const login = async (req, res) => {
   if (!isPasswordCorrect) {
     throw new CustomError.UnauthenticatedError('Invalid Credentials');
   }
-  const tokenUser = createTokenUser(user);
+  const tokenUser = createTokenUser(users);
   const cooki=attachCookiesToResponse({ res, user: tokenUser });
 
   res.status(StatusCodes.OK).json({user:users,token:cooki});
