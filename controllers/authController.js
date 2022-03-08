@@ -101,9 +101,9 @@ const otpverify = async (req,res) => {
   }
 }
 
-const setpassword =async (res,req)=>{
-  console.log(req)
-  const uinfo = await User.findOneAndUpdate({email:`meenakshiibr@gmail.com`},{password:req.body.password})
+const setpassword =async (req,res)=>{
+
+  const uinfo = await User.findOneAndUpdate({email:req.body.email},{password:req.body.password})
   if(!uinfo)
   {
     throw new CustomError.BadRequestError('Failed');
