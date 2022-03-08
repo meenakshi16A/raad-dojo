@@ -8,6 +8,6 @@ router.post('/login', login);
 router.get('/logout', logout);
 router.post('/forget-password', forgetpassword);
 router.post('/otpverify', otpverify);
-router.post('/set-password', setpassword);
+router.patch('/set-password', setpassword);
 
 module.exports = router;
