@@ -14,6 +14,8 @@ const xss = require('xss-clean');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 var path = require('path');
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
 // database
 const connectDB = require('./db/connect');
 
