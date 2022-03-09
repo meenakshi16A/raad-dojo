@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
+const bcrypt = require('bcryptjs');
 const { attachCookiesToResponse, createTokenUser } = require('../utils');
 
 const register = async (req, res) => {
@@ -103,7 +104,10 @@ const otpverify = async (req,res) => {
 
 const setpassword =async (req,res)=>{
 
-  const uinfo = await User.findOneAndUpdate({email:req.body.email},{password:req.body.password})
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
+
+  const uinfo = await User.findOneAndUpdate({email:req.body.email},{password:password})
   if(!uinfo)
   {
     throw new CustomError.BadRequestError('Failed');
